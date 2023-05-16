@@ -1,0 +1,29 @@
+<div>
+	<div>
+		<div class="row" style="padding:16px">
+	        <div class="col" >
+				<div class="mx-auto col-10 col-md-8 col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
+					<div style="padding:6px" class="form-group">
+			  			<label>Location</label>
+			  			<input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+					</div>
+				</div>
+		  	</div>
+		</div>
+        <div class="row">
+            <div class=" mx-auto  col-lg-10" id="map" >
+                <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                    <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                      ></agm-marker>
+					  	<!-- <agm-marker *ngFor="let hospital of hospitals" 
+					  		[latitude]="hospital.geometry.location.lat()" 
+					  		[longitude]="hospital.geometry.location.lng()"
+							[label]="hospital.name">
+						</agm-marker> -->
+                  </agm-map>
+			</div>
+        </div>
+	</div>
+</div>
+
+
