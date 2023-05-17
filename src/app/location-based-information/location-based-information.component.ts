@@ -51,14 +51,14 @@ export class LocationBasedInformationComponent implements OnInit {
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 12;
-          // this.getNearbyHospitals(this.latitude, this.longitude).subscribe((results) => {
-          //   this.hospitals = results;
-          //   console.log(this.hospitals)
-          //   this.hospitals.forEach(element => {
-          //     console.log(element.geometry.location.lat())
-          //     console.log(element.geometry.location.lng())
-          //   });
-          // })
+          this.getNearbyHospitals(this.latitude, this.longitude).subscribe((results) => {
+            this.hospitals = results;
+            console.log(this.hospitals)
+            this.hospitals.forEach(element => {
+              console.log(element.geometry.location.lat())
+              console.log(element.geometry.location.lng())
+            });
+          })
         });
       });
     });
@@ -95,7 +95,7 @@ export class LocationBasedInformationComponent implements OnInit {
     const location = new google.maps.LatLng(latitude, longitude);
     const request: google.maps.places.PlaceSearchRequest = {
       location: location,
-      radius: 2500, // Search within a 5000 meter radius
+      radius: 5000, // Search within a 5000 meter radius
       keyword: 'hospital' // Search for hospitals
     };
 
