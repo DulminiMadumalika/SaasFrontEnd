@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface Review {
-  id:number;
   reviewerName: string;
   review: string
   rating:string
@@ -70,12 +69,9 @@ export class ReviewsRatingsComponent implements OnInit {
   addReview() {
     // Check if the required fields are filled
     if (this.location && this.hospital && this.rating) {
-      // Determine the maximum ID value from the existing reviews
-      const maxId = this.reviews.reduce((max, review) => (review.id > max ? review.id : max), 0);
   
       // Create a new review object with the form values and the auto-incremented ID
       const newReview: Review = {
-        id: maxId + 1 ,
         location: this.location,
         hospital: this.hospital,
         review: this.review,
@@ -94,7 +90,6 @@ export class ReviewsRatingsComponent implements OnInit {
             this.review = '';
             this.rating = '';
             this.reviewerName ='';
-            // Update the filtered reviews if a filter is applied
           },
           (error) => {
             console.error('Error adding review:', error);
