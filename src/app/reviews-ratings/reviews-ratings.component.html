@@ -1,86 +1,77 @@
 <div>
-	<div>
-		<div class="row" style="padding-top: 16px ">
-        <div class="mx-auto col-10 col-md-8 col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
-			<form class="row g-3">
-				  <div class="col-md-6">
-				    <label for="inputCity" class="form-label">Location</label>
-				    <input type="text" class="form-control" id="inputCity">
-				  </div>
-				  <div class="col-md-6">
-				    <label for="inputState" class="form-label">Hospital/ Pharmacy</label>
-				    <select id="inputState" class="form-select">
-				      <option selected>Choose...</option>
-				      <option>Asiri Hospitals</option>
-				      <option>Loyed Pharmacy</option>
-				    </select>
-				  </div>
-				  <div class="col-12" style="align-self: center;">
-				    <button type="submit" class="btn btn-primary" >Search</button>
-				  </div>
-			</form>
-	  	</div>
-	  </div>
-	</div>
   	<div>
-  		<div class="row" style="margin: 12px">
-		<div class="col shadow-lg p-3 mb-5 bg-body rounded" style="margin: 12px">
-			<h2>View Reviews</h2>
-			<table class="table">
-			  <thead>
-			    <tr>
-			      <!-- <th scope="col">#</th> -->
-			      <th scope="col">Review</th>
-			      <th scope="col">Ratings</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr>
-			      <!-- <th scope="row">1</th> -->
-			      <td>Service is superb!</td>
-			      <td>5 - Very Good</td>
-			    </tr>
-			    <tr>
-			      <!-- <th scope="row">2</th> -->
-			      <td>Service is bad</td>
-			      <td>2 - Bad !</td>
-			    </tr>
-			    <!-- <tr>
-			      <th scope="row">3</th>
-			      <td colspan="2">Larry the Bird</td>
-			      <td>@twitter</td>
-			    </tr> -->
-			  </tbody>
-			</table>
-		</div>
 		<div class="col shadow-lg p-3 mb-5 bg-body rounded" style="margin: 12px">
 			<h2>Add Reviews</h2>
 			<form class="row g-3">
-				  <!-- <div class="col-md-6">
-				    <label for="inputLocation" class="form-label">Location</label>
-				    <input type="text" class="form-control" id="inputLocation_forReview">
-				  </div>
-				  <div class="col-md-6">
-				    <label for="inputHospital" class="form-label">Hospital</label>
-				    <input type="text" class="form-control" id="inputHospital4">
-				  </div> -->
-				  <div class="col-11">
-				    <label for="inputReview" class="form-label">Review</label>
-				    <textarea class="form-control" id="inputReview"></textarea>
-				  </div>
-				  <div class="col-md-6">
-				    <label for="reviewerName" class="form-label">Reviever Name</label>
-				    <input type="text" class="form-control" id="reviewerName">
-				  </div>
-				  <div class="col-5">
-				    <label for="inputRating" class="form-label">Rating</label>
-				    <input type="text" class="form-control" id="inputRating">
-				  </div>
-				  <div class="col-12">
-				    <button type="submit" class="btn btn-success">Save</button>
-				  </div>
-			</form>
+				<div class="col-md-6">
+				  <label for="inputLocation" class="form-label">Location</label>
+				  <input type="text" class="form-control" id="inputLocation_forReview" name="location" [(ngModel)]="location">
+				</div>
+				<div class="col-md-6">
+				  <label for="inputHospital" class="form-label">Hospital</label>
+				  <input type="text" class="form-control" id="inputHospital4" name="hospital" [(ngModel)]="hospital">
+				</div>
+				<div class="col-11">
+				  <label for="inputReview" class="form-label">Review</label>
+				  <textarea class="form-control" id="inputReview" name="review" [(ngModel)]="review"></textarea>
+				</div>
+				<div class="col-md-6">
+				  <label for="reviewerName" class="form-label">Reviewer Name</label>
+				  <input type="text" class="form-control" id="reviewerName" name="reviewerName" [(ngModel)]="reviewerName">
+				</div>
+				<div class="col-5">
+				  <label for="inputRating" class="form-label">Rating</label>
+				  <input type="text" class="form-control" id="inputRating" name="rating" [(ngModel)]="rating">
+				</div>
+				<div class="col-12">
+				  <button type="submit" class="btn btn-success" (click)="addReview()">Save</button>
+				</div>
+			  </form>						
 		</div>
-	</div>
+
+		
+  		<div class="row" style="margin: 12px">
+
+			<div class="row" style="padding-top: 16px ">
+				<div class="mx-auto col-10 col-md-8 col-lg-6 shadow-lg p-3 mb-5 bg-body rounded"></div>
+			</div>
+	
+			<div class="col shadow-lg p-3 mb-5 bg-body rounded" style="margin: 12px">
+				<h2>View Reviews</h2>
+				<form class="row g-3" (submit)="search()">
+					<div class="col-md-6">
+					  <label for="inputCity" class="form-label">Location</label>
+					  <input type="text" class="form-control" name="location" id="inputCity" [(ngModel)]="searchLocation">
+					</div>
+					<div class="col-md-6">
+					  <label for="inputState" class="form-label">Hospital/Pharmacy</label>
+					  <input type="text" class="form-control" name="hospital" id="inputHospital" [(ngModel)]="searchHospital">
+					</div>
+					<div class="col-12" style="align-self: center;">
+					  <button type="submit" class="btn btn-primary">Search</button>
+					</div>
+				  </form>
+				  <table class="table">
+					<thead>
+					  <tr>
+						<th scope="col">Hospital</th>
+						<th scope="col">Review</th>
+					  </tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let review of filteredReviews ? filteredReviews : reviews">
+						  <td>{{ review.hospital }} - {{ review.location }}</td>
+						  <td>{{ review.review }} - {{ review.rating }}</td>
+						</tr>
+					  </tbody>
+				  </table>
+			</div>
+		</div>
+
+
+
+
+
+
   	</div>
 </div>

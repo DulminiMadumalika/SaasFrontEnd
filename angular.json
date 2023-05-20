@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "final11app"
+  "defaultProject": "final11app",
+  "cli": {
+    "analytics": "a5a45ea5-1e5a-4bff-9249-d6c67dae0ae0"
+  }
 }

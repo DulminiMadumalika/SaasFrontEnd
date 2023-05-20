@@ -3,7 +3,7 @@
 			<form class="row g-3">
 				  <div>
 				    <label for="inputCity" class="form-label">Search by Keyword</label>
-				    <input type="text" class="form-control" id="inputCity">
+				    <input type="text" class="form-control" id="inputCity" name ="keyword" [(ngModel)]="searchKeyword" (keyup)="search()">
 				  </div>
 			</form>
 	</div>
@@ -19,25 +19,12 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr>
-		      <!-- <th scope="row">1</th> -->
-		      <td>Asiri Hospitals (Pvt.) Ltd.</td>
-		      <td>Wackwella Rd, Galle</td>
-		      <td>0912246467</td>
-		      <td>Opens 24x7</td>
-		    </tr>
-		    <tr>
-		      <!-- <th scope="row">2</th> -->
-		      <td>Healthguard Pharmacies</td>
-		      <td>Colombo 03</td>
-		      <td>0112457867</td>
-		      <td>Opens 7.30 am - 9.30 pm</td>
-		    </tr>
-		    <!-- <tr>
-		      <th scope="row">3</th>
-		      <td colspan="2">Larry the Bird</td>
-		      <td>@twitter</td>
-		    </tr> -->
+			<tr *ngFor="let data of provider">
+			  <td>{{ data.hospital }}</td>
+			  <td>{{ data.address }}</td>
+			  <td>{{ data.contact }}</td>
+			  <td>{{ data.other }}</td>
+			</tr>
 		  </tbody>
 		</table>
   	</div>
