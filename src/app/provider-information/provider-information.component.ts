@@ -17,6 +17,7 @@ export interface Provider {
 export class ProviderInformationComponent implements OnInit {
 
   provider: any[] = [];
+  originalprovider: any[] = [];
   searchKeyword: string = '';
 
   constructor(private http: HttpClient) { }
@@ -25,6 +26,7 @@ export class ProviderInformationComponent implements OnInit {
     this.http.get<any[]>('http://safetytraveller-env.eba-mzsacnda.us-east-1.elasticbeanstalk.com/getAllProviders').subscribe(
       (response) => {
         this.provider = response;
+        this.originalprovider = response;
       },
       (error) => {
         console.error('Error fetching table data:', error);
@@ -34,7 +36,8 @@ export class ProviderInformationComponent implements OnInit {
 
   search() {
     if (this.searchKeyword) {
-      this.provider = this.provider.filter((data) => {
+      console.log(this.searchKeyword);
+      this.provider = this.originalprovider.filter((data) => {
         // Convert both the keyword and data values to lowercase for case-insensitive comparison
         const keyword = this.searchKeyword.toLowerCase();
         const hospital = data.hospital.toLowerCase();
@@ -52,7 +55,7 @@ export class ProviderInformationComponent implements OnInit {
       });
     } else {
       // If no keyword entered, load all data
-      this.provider = this.provider;
+      this.provider = this.originalprovider;
     }
   }
   
