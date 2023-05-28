@@ -29,7 +29,7 @@ export class ReviewsRatingsComponent implements OnInit {
 
   ngOnInit(): void {
     {
-      this.http.get<Review[]>('http://localhost:8080/SaasSafetyTravel/getAllReviews').subscribe(
+      this.http.get<Review[]>('http://safetytraveller-env.eba-mzsacnda.us-east-1.elasticbeanstalk.com/getAllReviews').subscribe(
         (response) => {
           this.reviews = response;
         },
@@ -80,7 +80,7 @@ export class ReviewsRatingsComponent implements OnInit {
       };
   
       // Make a POST request to the backend API to add the new review
-      this.http.post('http://localhost:8080/SaasSafetyTravel/addReview', newReview)
+      this.http.post('http://safetytraveller-env.eba-mzsacnda.us-east-1.elasticbeanstalk.com/addReview', newReview)
         .subscribe(
           (response) => {
             console.log('Review added successfully:', response);

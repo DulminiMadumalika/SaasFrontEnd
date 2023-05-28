@@ -22,7 +22,7 @@ export class FirstAidsComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get<FirstAidData[]>('http://localhost:8080/SaasSafetyTravel/getAllFirstAid').subscribe(
+    this.http.get<FirstAidData[]>('http://safetytraveller-env.eba-mzsacnda.us-east-1.elasticbeanstalk.com/getAllFirstAid').subscribe(
       (response) => {
         this.firstAidData = response;
       },

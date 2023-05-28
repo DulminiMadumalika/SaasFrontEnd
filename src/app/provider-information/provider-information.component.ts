@@ -22,7 +22,7 @@ export class ProviderInformationComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<any[]>('http://localhost:8080/SaasSafetyTravel/getAllProviders').subscribe(
+    this.http.get<any[]>('http://safetytraveller-env.eba-mzsacnda.us-east-1.elasticbeanstalk.com/getAllProviders').subscribe(
       (response) => {
         this.provider = response;
       },
